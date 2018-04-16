@@ -308,6 +308,15 @@ vector<unsigned long>* vectorReturnGreater(vector<unsigned long> &v1, vector<uns
 }
 
 
+bool singleDigitVectorDivide(vector<unsigned long> &dividend, unsigned long divisor, vector<unsigned long>& q, unsigned long &r)    {
+    
+    
+    
+    vectorTrim(q);
+    return true;
+}
+
+
 bool vectorDivide(vector<unsigned long> &dividend, vector<unsigned long> &divisor, vector<unsigned long> &q, vector<unsigned long> &r)   {
  
     unsigned long d = (MAX_DIGIT - 1) / divisor.back();
@@ -361,7 +370,6 @@ bool vectorDivide(vector<unsigned long> &dividend, vector<unsigned long> &diviso
             qHat = qHat - 1;
             rHat = rHat + v[n - 1];
             if (rHat >= MAX_DIGIT)   {
-               // return false;
                 if (qHat == MAX_DIGIT || qHat * v[n - 2] > MAX_DIGIT * rHat + u[j + n - 2])    {
                     qHat = qHat - 1;
                     rHat = rHat + v[n - 1];
@@ -389,11 +397,11 @@ bool vectorDivide(vector<unsigned long> &dividend, vector<unsigned long> &diviso
         
         
         if (vectorReturnGreater(ujs, nextThing) == &nextThing) {   //D6
-            return false;
             ujs = vectorAdd(ujs, v);
             q[j] = q[j] - 1;
             ujs = vectorSubtract(ujs, nextThing);
-            ujs.pop_back();
+            vectorTrim(ujs);
+            //ujs.pop_back();
         }   else    {
             ujs = vectorSubtract(ujs, nextThing);
         }
